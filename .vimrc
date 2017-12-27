@@ -1,10 +1,10 @@
-" Use the Solarized Dark theme
-set background=dark
-colorscheme solarized
-let g:solarized_termtrans=1
-
 " Make Vim more useful
 set nocompatible
+" Vundle manager
+source ~/.vim/startup/vundle.vim
+" Enable syntax highlighting
+syntax on
+colorscheme onedark
 " Use the OS clipboard by default (on versions compiled with `+clipboard`)
 set clipboard=unnamed
 " Enhance command-line completion
@@ -23,7 +23,7 @@ set encoding=utf-8 nobomb
 let mapleader=","
 " Don’t add empty newlines at the end of files
 set binary
-set noeol
+" set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -42,8 +42,6 @@ set exrc
 set secure
 " Enable line numbers
 set number
-" Enable syntax highlighting
-syntax on
 " Highlight current line
 set cursorline
 " Make tabs as wide as two spaces
@@ -68,7 +66,7 @@ set nostartofline
 " Show the cursor position
 set ruler
 " Don’t show the intro message when starting Vim
-set shortmess=atI
+" set shortmess=atI
 " Show the current mode
 set showmode
 " Show the filename in the window titlebar
@@ -95,12 +93,16 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
-" Automatic commands
-if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-endif
+" custome keyboard bindings
+source ~/.vim/startup/mappings.vim
+
+" plugin specific configs
+source ~/.vim/startup/plugin_config.vim
+let g:python_host_prog = '/home/ehengao/bin/python'
+let g:python3_host_prog = '/home/ehengao/bin/python'
+let g:pymode_python = 'python3'
+source ~/.vim/bundle/python-mode/plugin/pymode.vim
+let g:pymode_rope_complete_on_dot = 1
+let g:pymode = 1
+
+
